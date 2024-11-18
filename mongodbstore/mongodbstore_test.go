@@ -7,16 +7,16 @@ import (
 	"testing"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+    "go.mongodb.org/mongo-driver/v2/mongo"
+    "go.mongodb.org/mongo-driver/v2/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestFind(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(ctx, clientOptions)
+	client, err := mongo.Connect(options.Client(), clientOptions)
 	if err != nil {
 		t.Fatalf("got %v: expected %v", err, nil)
 
@@ -50,7 +50,7 @@ func TestFindMissing(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(ctx, clientOptions)
+	client, err := mongo.Connect(options.Client(), clientOptions)
 	if err != nil {
 		t.Fatalf("got %v: expected %v", err, nil)
 
@@ -76,7 +76,7 @@ func TestCommitNew(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(ctx, clientOptions)
+	client, err := mongo.Connect(options.Client(), clientOptions)
 	if err != nil {
 		t.Fatalf("got %v: expected %v", err, nil)
 
@@ -117,7 +117,7 @@ func TestCommitUpdated(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(ctx, clientOptions)
+	client, err := mongo.Connect(options.Client(), clientOptions)
 	if err != nil {
 		t.Fatalf("got %v: expected %v", err, nil)
 
@@ -163,7 +163,7 @@ func TestExpiry(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(ctx, clientOptions)
+	client, err := mongo.Connect(options.Client(), clientOptions)
 	if err != nil {
 		t.Fatalf("got %v: expected %v", err, nil)
 
@@ -197,7 +197,7 @@ func TestDelete(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(ctx, clientOptions)
+	client, err := mongo.Connect(options.Client(), clientOptions)
 	if err != nil {
 		t.Fatalf("got %v: expected %v", err, nil)
 
@@ -232,7 +232,7 @@ func TestCleanupInterval(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-	client, err := mongo.Connect(ctx, clientOptions)
+	client, err := mongo.Connect(options.Client(), clientOptions)
 	if err != nil {
 		t.Fatalf("got %v: expected %v", err, nil)
 
